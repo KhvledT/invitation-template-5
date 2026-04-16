@@ -81,7 +81,7 @@ const RingsWelcome = ({ onOpen }: Props) => {
       {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-lg">
         <div className="welcome-text">
-          <p className="font-display text-lg md:text-2xl leading-[1.8] tracking-wide text-wedding-cream/90">
+          <p className="font-display w-[70%] md:w-[100%] mx-auto text-lg md:text-2xl leading-[1.8] tracking-wide text-wedding-cream/90">
             This moment wouldn't be the same without you…
           </p>
           <div
