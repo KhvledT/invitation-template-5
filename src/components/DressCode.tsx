@@ -5,9 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const colors = [
-  { name: "Cream", hex: "#f5efe6" },
   { name: "Beige", hex: "#e8dccb" },
-  { name: "Gold", hex: "#d4b47c" },
   { name: "Brown", hex: "#6b4f3a" },
 ];
 

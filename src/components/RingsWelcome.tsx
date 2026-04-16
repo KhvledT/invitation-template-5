@@ -82,9 +82,7 @@ const RingsWelcome = ({ onOpen }: Props) => {
       <div className="relative z-10 text-center px-6 max-w-lg">
         <div className="welcome-text">
           <p className="font-display text-lg md:text-2xl leading-[1.8] tracking-wide text-wedding-cream/90">
-            This moment wouldn't be the same
-            <br />
-            without you…
+            This moment wouldn't be the same without you…
           </p>
           <div
             className="w-12 md:w-16 h-px mx-auto my-5 md:my-6"
@@ -102,7 +100,7 @@ const RingsWelcome = ({ onOpen }: Props) => {
           onClick={onOpen}
           className="welcome-btn btn-gold mt-10 md:mt-14 animate-pulse-glow text-wedding-cream border-wedding-light-gold/60 opacity-0 !text-sm md:!text-[1.1rem] !py-2.5 !px-6 md:!py-[0.75rem] md:!px-[2.5rem]"
         >
-          Open Invitation
+          Open
         </button>
       </div>
     </section>

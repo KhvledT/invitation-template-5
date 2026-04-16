@@ -12,48 +12,32 @@ const CoupleStory = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax images
+      // Images entrance
       gsap.fromTo(
-        ".groom-photo",
-        { x: 80, opacity: 0, rotate: 3 },
+        ".groom-photo, .bride-photo",
+        { scale: 1.1, opacity: 0 },
         {
-          x: 0,
+          scale: 1,
           opacity: 1,
-          rotate: 0,
-          duration: 1.4,
+          duration: 1.8,
           ease: "power3.out",
+          stagger: 0.2,
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 75%",
+            start: "top 70%",
             toggleActions: "play none none reverse",
           },
         },
       );
+
+      // Text entrance
       gsap.fromTo(
-        ".bride-photo",
-        { x: -80, opacity: 0, rotate: -3 },
-        {
-          x: 0,
-          opacity: 1,
-          rotate: 0,
-          duration: 1.4,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 65%",
-            toggleActions: "play none none reverse",
-          },
-        },
-      );
-      // Text
-      gsap.fromTo(
-        ".story-text-line",
-        { opacity: 0, y: 25 },
+        ".story-text",
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.15,
-          duration: 0.8,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".story-text",
@@ -62,16 +46,19 @@ const CoupleStory = () => {
           },
         },
       );
-      // Ornamental line
+
+      // Ornament entrance
       gsap.fromTo(
-        ".story-divider",
-        { scaleX: 0 },
+        ".story-ornament",
+        { opacity: 0, rotate: -15, scale: 0.8 },
         {
-          scaleX: 1,
-          duration: 1,
+          opacity: 0.3,
+          rotate: 0,
+          scale: 1,
+          duration: 1.5,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: ".story-divider",
+            trigger: ".story-ornament",
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
@@ -82,81 +69,55 @@ const CoupleStory = () => {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-screen py-24 px-6 flex items-center overflow-hidden bg-wedding-cream"
-    >
-      {/* Subtle floral bg */}
-      <img
-        src={floralOrnament}
-        alt=""
-        className="absolute top-10 right-10 w-40 h-40 opacity-[0.06] pointer-events-none"
-      />
-      <img
-        src={floralOrnament}
-        alt=""
-        className="absolute bottom-10 left-10 w-40 h-40 opacity-[0.06] pointer-events-none rotate-180"
-      />
+    <div className="bg-wedding-cream">
+      <section
+        ref={sectionRef}
+        className="max-w-7xl mx-auto relative min-h-[90vh] md:min-h-screen w-full overflow-hidden"
+      >
+        {/* Background Subtle Overlays */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-5 mix-blend-overlay"
+          style={{
+            backgroundImage: `url(${floralOrnament})`,
+            backgroundSize: "400px",
+            backgroundPosition: "10% 20%",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
 
-      <div className="max-w-6xl mx-auto grid md:grid-cols-5 gap-8 items-center relative z-10">
-        {/* Images column - 3 cols */}
-        <div className="md:col-span-3 relative h-[440px] md:h-[600px]">
-          {/* Groom - top right */}
-          <div
-            className="groom-photo absolute top-0 right-2 md:right-12 w-40 sm:w-52 md:w-60 h-60 sm:h-72 md:h-80 rounded-[2rem] overflow-hidden shadow-xl"
-            style={{ boxShadow: "0 20px 50px rgba(107,79,58,0.2)" }}
-          >
+        <div className="absolute inset-0 w-full h-full z-10">
+          {/* Text - Top Left Area */}
+          <div className="story-text absolute top-[6%] md:top-[10%] left-6 md:left-[8%] w-[60%] md:w-[40%] z-30">
+            <p
+              className="w-[50%] md:w-[80%] lg:w-[100%] text-[1.2rem] md:text-[1.8rem] leading-[1.8] md:leading-[2] text-[#4a3623] text-center md:text-left"
+              style={{ fontFamily: "'Caveat', 'Great Vibes', cursive, serif" }}
+            >
+              This is more than just a celebration... it's the beginning of a
+              story written with love, filled with laughter, and shared with the
+              people who mean the most to us
+            </p>
+          </div>
+
+          {/* Groom Image - Top Right Quadrant */}
+          <div className="groom-photo rounded-b-full absolute top-0 right-0 w-[60%] h-[55%] md:w-[48%] md:h-[65%] z-20 overflow-hidden shadow-2xl">
             <img
               src={groomImg}
               alt="Groom"
-              className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-              loading="lazy"
+              className="w-full h-full object-cover object-top"
             />
           </div>
-          {/* Bride - bottom left */}
-          <div
-            className="bride-photo absolute bottom-0 left-2 md:left-12 w-40 sm:w-52 md:w-60 h-60 sm:h-72 md:h-80 rounded-full overflow-hidden shadow-xl"
-            style={{ boxShadow: "0 20px 50px rgba(107,79,58,0.2)" }}
-          >
+
+          {/* Bride Image - Bottom Left Quadrant */}
+          <div className="bride-photo rounded-t-full absolute bottom-0 left-0 w-[65%] h-[50%] md:w-[45%] md:h-[60%] z-20 overflow-hidden shadow-2xl">
             <img
               src={brideImg}
               alt="Bride"
-              className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-110"
-              loading="lazy"
+              className="w-full h-full object-cover object-top"
             />
           </div>
         </div>
-
-        {/* Text - 2 cols */}
-        <div className="md:col-span-2 story-text text-center md:text-left">
-          <p className="story-text-line font-display text-lg md:text-xl leading-[1.9] text-wedding-brown/75 italic">
-            "This is more than just a celebration…
-          </p>
-          <p className="story-text-line font-display text-lg md:text-xl leading-[1.9] text-wedding-brown/75 italic mt-2">
-            it's the beginning of a story written with love,
-          </p>
-          <p className="story-text-line font-display text-lg md:text-xl leading-[1.9] text-wedding-brown/75 italic mt-2">
-            filled with laughter, and shared
-          </p>
-          <p className="story-text-line font-display text-lg md:text-xl leading-[1.9] text-wedding-brown/75 italic mt-2">
-            with the people who mean the most to us."
-          </p>
-          <div
-            className="story-divider w-20 h-px bg-wedding-gold/40 mt-8 mx-auto md:mx-0"
-            style={{ transformOrigin: "left" }}
-          />
-          <div className="flex items-center gap-3 mt-6 justify-center md:justify-start">
-            <span className="font-script text-3xl text-wedding-gold">
-              Ahmed
-            </span>
-            <span className="font-display text-wedding-gold/50">&</span>
-            <span className="font-script text-3xl text-wedding-gold">
-              Dalia
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
